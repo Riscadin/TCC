@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Hair Harmony</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3e4e6;
+        }
+
+        .topo {
+            background-color: #99ae8d;
+            text-align: center;
+            padding: 20px 0;
+	    position: relative; 
+        }
+
+        .topo h1 {
+            margin: 0;
+            color: #000;
+            font-size: 2.5em;
+        }
+
+        .topo p {
+            margin: 0;
+            color: #000;
+            font-size: 1.2em;
+        }
+
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background-color: #e3e4e6;
+        }
+
+        .coluna-esquerda {
+            width: 100%;
+            max-width: 900px; /* Ajusta o limite máximo da largura para manter um layout limpo em telas grandes */
+        }
+
+        .coluna-esquerda h2 {
+            color: #b0bfa6;
+            font-size: 2em;
+            font-style: italic;
+            border-bottom: 1px solid #b0bfa6;
+            padding-bottom: 10px;
+            text-align: left;
+        }
+
+        .coluna-esquerda p {
+            color: #000;
+            font-size: 1.5em;
+            border: 1px solid #b1b1b1;
+            padding: 20px;
+            background-color: #e0e0df;
+            text-align: justify;
+        }
+
+        .coluna-direita {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .coluna-direita img {
+            max-width: 40%;
+            border: 1px solid #000;
+        }
+	.topo img{
+	    position: absolute;
+            top: 50%; /* Alinha verticalmente ao centro do topo */
+            right: 20px; /* Alinha a imagem à direita com uma margem */
+            transform: translateY(-50%); /* Centraliza verticalmente */
+            max-width: 150px; /* Define um tamanho máximo para a imagem */
+            height: auto; /* Mantém a proporção da imagem */
+}
+	
+    </style>
+</head>
+<body>
+    <header class="topo">
+        <h1>SOBRE NÓS</h1>
+        <p>CONHEÇA-NOS MELHOR!</p>
+	<a href="\Users\dds2023\Desktop\login.html"> <!-- Insira aqui o URL desejado -->
+            <img id="backButton" src="\Users\dds2023\Desktop\rick\site-removebg-preview.png" alt="login">
+        </a>
+    </header>
+    <main>
+        <section class="conteudo">
+            <div class="coluna-esquerda">
+                <h2>QUEM SOMOS NÓS</h2>
+                <p>Aqui no nosso salão, realizamos uma análise completa da sua estrutura física e do seu cabelo, 
+                para recomendar o tratamento mais adequado às suas características individuais. Nosso objetivo é proporcionar 
+                cuidados personalizados que realcem a beleza natural do seu cabelo e harmonizem com seu estilo pessoal.</p>
+            </div>
+            <div class="coluna-direita">
+                <img src="\Users\dds2023\Desktop\rick\LOGO.jpg" alt="Hair Harmony Beauty Salon Logo" >
+            </div>
+        </section>
+    </main>
+	<script>
+		document.getElementById('backButton').addEventListener('click', function() {
+        	window.history.back();
+    	});
+	</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nossas Clientes - Hair Harmony</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #E8E8E8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            width: 100%;
+            background-color: #F0F0F0;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+        }
+
+        header {
+            background-color: #A5B89C;
+            padding: 20px;
+            text-align: left;
+            position: relative;
+        }
+
+        header h1 {
+            font-size: 2em;
+            color: #333;
+        }
+
+        header p {
+            font-size: 1.2em;
+            color: #333;
+        }
+
+        header img {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            max-width: 150px;
+            height: auto;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 0;
+            flex-grow: 1;
+        }
+
+        .testimonials {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            margin-right: 20px;
+        }
+
+        .testimonial {
+            margin-bottom: 20px;
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 10px; /* Ajuste esse valor para diminuir ou aumentar a distância entre o nome e o email */
+        }
+
+        .testimonial h2 {
+            color: #A5B89C;
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .testimonial p {
+            color: #333;
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .testimonial-box {
+            border: 1px solid #333;
+            padding: 10px; /* Diminuiu o padding para compactar mais as mensagens */
+            border-radius: 5px;
+            background-color: #FFF;
+            margin-top: 5px;
+        }
+
+        .logo-section {
+            flex: 0 0 35%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-left: 20px;
+        }
+
+        .logo-section img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #333;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="topo">
+            <h1>NOSSAS CLIENTES</h1>
+            <p>INVESTIRAM E APROVARAM!</p>
+            <a href="\Users\dds2023\Desktop\login.html">
+                <img id="backButton" src="\Users\dds2023\Desktop\rick\site-removebg-preview.png" alt="login">
+            </a>
+        </header>
+        <main>
+            <section class="testimonials">
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <h2>Adriana</h2>
+                        <p>adriana@gmail.com</p>
+                    </div>
+                    <div class="testimonial-box">
+                        <p>Ótimo atendimento das profissionais, produtos de ótima qualidade e ficou um resultado extraordinário!</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <h2>Daniela</h2>
+                        <p>daniela@gmail.com</p>
+                    </div>
+                    <div class="testimonial-box">
+                        <p>Fiz uma descoloração no cabelo e amei muito! Meu cabelo não ressecou e nem quebrou.</p>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-header">
+                        <h2>Beatriz</h2>
+                        <p>bia@gmail.com</p>
+                    </div>
+                    <div class="testimonial-box">
+                        <p>Fui até o salão fazer um corte e meu cabelo ficou maravilhoso. Voltarei mais vezes.</p>
+                    </div>
+                </div>
+            </section>
+            <section class="logo-section">
+                <img src="\Users\dds2023\Desktop\rick\LOGO.jpg" alt="Hair Harmony Logo">
+            </section>
+        </main>
+    </div>
+<script> 
+	document.getElementById('backButton').addEventListener('click', function() {
+        window.history.back();
+    });
+s</script>
+</body>
+</html>

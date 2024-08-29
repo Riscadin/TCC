@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato - Hair Harmony Beauty Salon</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F0F0F0;
+            margin: 0;
+            padding: 0;
+            height: 100vh; /* Garante que o body ocupe a altura total da tela */
+            display: flex;
+            flex-direction: column;
+        }
+
+        .header {
+            background-color: #99ae8d;
+            padding: 20px;
+            text-align: left;
+            font-size: 24px;
+            color: #000;
+            position: relative;
+        }
+
+        .subheader {
+            font-size: 18px;
+            color: #000;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center; /* Centraliza as divs horizontalmente */
+            align-items: center; /* Centraliza as divs verticalmente */
+            gap: 5%; /* Espaço entre as divs */
+            padding: 20px;
+            flex-grow: 1; /* Faz a container ocupar o espaço restante do body */
+        }
+
+        .contact-info,
+        .logo {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 30%; /* Cada div ocupa 30% da largura da tela */
+            display: flex; /* Flexbox para centralização */
+            align-items: center; /* Centraliza verticalmente */
+            justify-content: center; /* Centraliza horizontalmente */
+            flex-direction: column; /* Organiza o conteúdo em coluna */
+            text-align: left; 
+        }
+
+        .contact-item {
+            margin-bottom: 20px;
+            font-size: 18px;
+            width: 100%; /* Faz com que o item ocupe toda a largura disponível */
+            display: flex;
+            justify-content: flex-start; /* Alinha os elementos no início da linha */
+        }
+
+        .contact-item .label {
+            color: #7A9E73;
+            flex: 1; /* Ajusta a largura do label */
+            text-align: left; /* Alinha o texto à esquerda */
+        }
+
+        .contact-item .value {
+            color: #333;
+            font-weight: bold;
+            flex: 2; /* A value ocupa mais espaço para se alinhar à direita do label */
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item img {
+            vertical-align: middle;
+            margin-right: 10px;
+        }
+
+        .logo img {
+            width: 100%;
+            border-radius: 10px;
+        }
+
+        .topo img {
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+            max-width: 150px;
+            height: auto;
+        }
+
+        .header a img {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: 150px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>CONTATO</div>
+        <div class="subheader">VENHA INVESTIR EM VOCÊ CONOSCO!</div>
+        <a href="\Users\dds2023\Desktop\login.html">
+            <img id="backButton" src="\Users\dds2023\Desktop\rick\site-removebg-preview.png" alt="login">
+        </a>
+    </div>
+
+    <div class="container">
+        <div class="contact-info">
+            <div class="contact-item">
+                <span class="label">TELEFONE:</span>
+                <div class="value">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp" width="24">
+                    +55 28 99970-7070
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="label">EMAIL:</span>
+                <div class="value">
+                    <img src="\Users\dds2023\Desktop\Downloads de Ricardo\download-removebg-preview (2).png" alt="Gmail" width="25">
+                    HAIRHARMONY@GMAIL.COM
+                </div>
+            </div>
+            <div class="contact-item">
+                <span class="label">INSTAGRAM:</span>
+                <div class="value">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram" width="24">
+                    @HAIR_HARMONY
+                </div>
+            </div>
+        </div>
+        <div class="logo">
+            <img src="\Users\dds2023\Desktop\rick\LOGO.jpg" alt="Hair Harmony Logo">
+        </div>
+    </div>
+<script>
+    document.getElementById('backButton').addEventListener('click', function() {
+        window.history.back();
+    });
+</script>
+</body>
+</html>

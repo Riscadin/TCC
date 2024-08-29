@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços - Hair Harmony</title>
+    <style>
+        /* Estilos Gerais */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e3e4e6;
+        }
+        .topo {
+            background-color: #99ae8d;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .topo h1 {
+            margin: 0;
+            color: #000;
+            font-size: 2.5em;
+        }
+        .topo p {
+            margin: 0;
+            color: #000;
+            font-size: 1.2em;
+        }
+        .conteudo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px;
+            background-color: #e3e4e6;
+        }
+        .opcoes {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            max-width: 900px;
+            margin-bottom: 20px;
+        }
+        .opcoes label {
+            font-size: 1.5em;
+            color: #000;
+            cursor: pointer;
+        }
+        .opcoes input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.5);
+            cursor: pointer;
+        }
+        .proseguir-btn {
+            background-color: #b0bfa6;
+            color: #000;
+            font-size: 1.5em;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-bottom: 30px;
+        }
+        .proseguir-btn:hover {
+            background-color: #99ae8d;
+        }
+        .formulario {
+            display: none;
+            width: 100%;
+            max-width: 900px;
+            background-color: #e0e0df;
+            border: 1px solid #b1b1b1;
+            padding: 20px;
+        }
+        .formulario label {
+            font-size: 1.2em;
+            margin-top: 10px;
+            display: block;
+            color: #000;
+        }
+        .carrossel {
+            display: flex;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+        .carrossel div {
+            margin-right: 10px;
+            position: relative;
+        }
+        .carrossel input[type="radio"] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+        .carrossel img {
+            max-width: 150px;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: border 0.3s ease;
+        }
+        .carrossel input[type="radio"]:checked + label img {
+            border: 6px solid #99ae8d;
+        }
+        .formulario button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #99ae8d;
+            color: #000;
+            font-size: 1.2em;
+            border: none;
+            cursor: pointer;
+        }
+        .formulario button:hover {
+            background-color: #b0bfa6;
+        }
+        .iframe-container {
+            display: none;
+            width: 100%;
+            max-width: 1200px;
+            height: 700px;
+            margin: 20px 0;
+            border: 1px solid #b1b1b1;
+            overflow: hidden;
+            background-color: #fff;
+        }
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <header class="topo">
+        <h1>Hair Harmony</h1>
+        <p>Escolha seus serviços</p>
+    </header>
+    <main class="conteudo">
+        <div class="opcoes">
+            <label><input type="checkbox" id="corte-checkbox" data-duration="90"> Corte</label>
+            <label><input type="checkbox" id="tintura-checkbox" data-duration="150"> Tintura</label>
+            <label><input type="checkbox" id="tratamento-checkbox" data-duration="90"> Tratamento</label>	
+        </div>
+        <button class="proseguir-btn" onclick="mostrarIframe()">Prosseguir</button>
+
+        <!-- Formulário de Seleção -->
+        <div id="tipoDeCoisas" class="formulario">
+            <h2>Escolha de acordo com suas características</h2>
+            <div id="curvatura-secao">
+                <label>Curvatura</label>
+                <div class="carrossel">
+                    <div><input type="radio" id="curvatura1" name="curvatura" value="1"><label for="curvatura1"><img src="\Users\dds2023\Desktop\rick\1.jpg" alt="Curvatura 1"></label></div>
+                    <div><input type="radio" id="curvatura2a" name="curvatura" value="2a"><label for="curvatura2a"><img src="\Users\dds2023\Desktop\rick\2a.jpg" alt="Curvatura 2a"></label></div>
+                    <div><input type="radio" id="curvatura2b" name="curvatura" value="2b"><label for="curvatura2b"><img src="\Users\dds2023\Desktop\rick\2b.jpg" alt="Curvatura 2b"></label></div>
+                    <div><input type="radio" id="curvatura2c" name="curvatura" value="2c"><label for="curvatura2c"><img src="\Users\dds2023\Desktop\rick\2c.jpg" alt="Curvatura 2c"></label></div>
+                    <div><input type="radio" id="curvatura3a" name="curvatura" value="3a"><label for="curvatura3a"><img src="\Users\dds2023\Desktop\rick\3a.jpg" alt="Curvatura 3a"></label></div>
+                    <div><input type="radio" id="curvatura3b" name="curvatura" value="3b"><label for="curvatura3b"><img src="\Users\dds2023\Desktop\rick\3b.jpg" alt="Curvatura 3b"></label></div>
+                    <div><input type="radio" id="curvatura3c" name="curvatura" value="3c"><label for="curvatura3c"><img src="\Users\dds2023\Desktop\rick\3c.jpg" alt="Curvatura 3c"></label></div>
+                    <div><input type="radio" id="curvatura4a" name="curvatura" value="4a"><label for="curvatura4a"><img src="\Users\dds2023\Desktop\rick\4a.jpg" alt="Curvatura 4a"></label></div>
+                    <div><input type="radio" id="curvatura4b" name="curvatura" value="4b"><label for="curvatura4b"><img src="\Users\dds2023\Desktop\rick\4b.jpg" alt="Curvatura 4b"></label></div>
+                    <div><input type="radio" id="curvatura4c" name="curvatura" value="4c"><label for="curvatura4c"><img src="\Users\dds2023\Desktop\rick\4c.jpg" alt="Curvatura 4c"></label></div>
+                </div>
+            </div>
+            <div id="tamanho-secao">
+                <label>Tamanho do Cabelo</label>
+                <div class="carrossel">
+                    <div><input type="radio" id="tamanhoCurto" name="tamanho" value="Curto"><label for="tamanhoCurto"><img src="\Users\dds2023\Desktop\rick\Curto.jpg" alt="Curto"></label></div>
+                    <div><input type="radio" id="tamanhoMedio" name="tamanho" value="Medio"><label for="tamanhoMedio"><img src="\Users\dds2023\Desktop\rick\Medio.jpg" alt="Medio"></label></div>
+                    <div><input type="radio" id="tamanhoLongo" name="tamanho" value="Longo"><label for="tamanhoLongo"><img src="\Users\dds2023\Desktop\rick\Longo.jpg" alt="Longo"></label></div>
+                    <div><input type="radio" id="tamanhoSuperLongo" name="tamanho" value="Super Longo"><label for="tamanhoSuperLongo"><img src="\Users\dds2023\Desktop\rick\SuperLongo.jpg" alt="Super Longo"></label></div>
+		    <div><input type="radio" id="tamanhoExtraLongo" name="tamanho" value="Extra Longo"><label for="tamanhoExtraLongo"><img src="\Users\dds2023\Desktop\rick\ExtraLongo.jpg" alt="Extra Longo"></label></div>
+                </div>
+            </div>
+            <div id="cor-secao">
+                <label>Cor do Cabelo</label>
+                <div class="carrossel">
+                    <div><input type="radio" id="cor1" name="cor" value="Preto"><label for="cor1"><img src="\Users\dds2023\Desktop\rick\1preto.png" alt="Preto"></label></div>
+                    <div><input type="radio" id="cor2" name="cor" value="Castanho"><label for="cor2"><img src="\Users\dds2023\Desktop\rick\castanho.png" alt="Castanho"></label></div>
+                    <div><input type="radio" id="cor3" name="cor" value="Castanho Claro"><label for="cor3"><img src="\Users\dds2023\Desktop\rick\castanhoClaro.png" alt="Castanho Claro"></label></div>
+                    <div><input type="radio" id="cor4" name="cor" value="Castanho Médio"><label for="cor4"><img src="\Users\dds2023\Desktop\rick\castanhoMédio.png" alt="Castanho Médio"></label></div>
+                    <div><input type="radio" id="cor5" name="cor" value="Loiro Escuro"><label for="cor5"><img src="\Users\dds2023\Desktop\rick\loiroEscuro.png" alt="Loiro Escuro"></label></div>
+                    <div><input type="radio" id="cor6" name="cor" value="Loiro Médio"><label for="cor6"><img src="\Users\dds2023\Desktop\rick\loiroMedio.png" alt="Loiro Médio"></label></div>
+                    <div><input type="radio" id="cor7" name="cor" value="Loiro Claro"><label for="cor7"><img src="\Users\dds2023\Desktop\rick\loiroClaro.png" alt="Loiro Claro"></label></div>
+                    <div><input type="radio" id="cor8" name="cor" value="Loiro Muito Claro"><label for="cor8"><img src="\Users\dds2023\Desktop\rick\loiroMuitoClaro.png" alt="Loiro Muito Claro"></label></div>
+                    <div><input type="radio" id="cor9" name="cor" value="Loiro Claríssimo"><label for="cor9"><img src="\Users\dds2023\Desktop\rick\loiroClarissimo.png" alt="Loiro Claríssimo"></label></div>
+                    <div><input type="radio" id="cor10" name="cor" value="Loiro Super Claro"><label for="cor10"><img src="\Users\dds2023\Desktop\rick\loiroSuperClaro.png" alt="Loiro Super Claro"></label></div>
+                    <div><input type="radio" id="cor11" name="cor" value="Loiro Ultra Claríssimo"><label for="cor11"><img src="\Users\dds2023\Desktop\rick\loiroUltraClarissimo.png" alt="Loiro Ultra Claríssimo"></label></div>
+                </div>
+            </div>
+            
+        </div>
+        
+        
+    </main>
+
+      <!-- Cal inline embed code begins -->
+  <div id="calendar-container" style="width:100%;height:100%;overflow:scroll"></div>
+  <script type="text/javascript">
+    (function (C, A, L) { 
+      let p = function (a, ar) { a.q.push(ar); }; 
+      let d = C.document; 
+      C.Cal = C.Cal || function () { 
+        let cal = C.Cal; 
+        let ar = arguments; 
+        if (!cal.loaded) { 
+          cal.ns = {}; 
+          cal.q = cal.q || []; 
+          d.head.appendChild(d.createElement("script")).src = A; 
+          cal.loaded = true; 
+        } 
+        if (ar[0] === L) { 
+          const api = function () { p(api, arguments); }; 
+          const namespace = ar[1]; 
+          api.q = api.q || []; 
+          if (typeof namespace === "string") {
+            cal.ns[namespace] = cal.ns[namespace] || api;
+            p(cal.ns[namespace], ar);
+            p(cal, ["initNamespace", namespace]);
+          } else p(cal, ar); 
+          return;
+        } 
+        p(cal, ar); 
+      }; 
+    })(window, "https://app.cal.com/embed/embed.js", "init");
+    
+    let calendarLinkBase = "ricardo-moreira-cardozo-junior-o4mfrx/hairharmony";
+    
+    function loadCalendar(duration) {
+    let container = document.getElementById('calendar-container');
+    container.innerHTML = ''; // Clear the container
+    Cal.ns.hairharmony("inline", {
+        elementOrSelector: "#calendar-container",
+        calLink: `${calendarLinkBase}?duration=${duration}`,
+        layout: "month_view"
+    });
+}
+
+
+    // Initialize the calendar
+    Cal("init", "hairharmony", { origin: "https://cal.com" });
+    function calcularDuracao() {
+            let totalDuration = 0;
+            let checkboxes = document.querySelectorAll('.opcoes input[type="checkbox"]');
+            let totalCheckboxes = checkboxes.length;
+            let checkedCheckboxes = document.querySelectorAll('.opcoes input[type="checkbox"]:checked').length;
+
+            if (checkedCheckboxes === totalCheckboxes) {
+                // Se todos os checkboxes estão selecionados, definir duração total como 360 minutos
+                totalDuration = 360;
+            } else {
+                // Caso contrário, calcular a duração normal
+                checkboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        totalDuration += parseInt(checkbox.getAttribute('data-duration'), 10);
+                    }
+                });
+            }
+
+            return totalDuration;
+        }
+
+     
+
+        
+	Cal.ns.hairharmony("ui", {"styles": {"branding": {"brandColor": "#000000"}}, "hideEventTypeDetails": true, "layout": "month_view"});
+
+
+
+    
+        
+
+
+
+	function coletarDados() {
+    // Coletar dados dos checkboxes
+    let servicosSelecionados = [];
+    document.querySelectorAll('.opcoes input[type="checkbox"]:checked').forEach(checkbox => {
+        servicosSelecionados.push({
+            id: checkbox.id,
+            label: checkbox.nextSibling.nodeValue.trim(), // O texto do rótulo
+            duracao: parseInt(checkbox.getAttribute('data-duration'), 10)
+        });
+    });
+
+    // Coletar dados do carrossel de imagens
+    let curvaturaSelecionada = document.querySelector('input[name="curvatura"]:checked')?.value;
+    let tamanhoSelecionado = document.querySelector('input[name="tamanho"]:checked')?.value;
+    let corSelecionada = document.querySelector('input[name="cor"]:checked')?.value;
+
+    return {
+        servicos: servicosSelecionados,
+        curvatura: curvaturaSelecionada,
+        tamanho: tamanhoSelecionado,
+        cor: corSelecionada
+    };
+}
+
+async function obterDadosCal() {
+    try {
+        const resposta = await fetch('https://api.cal.com/v1/me', {
+            method: 'GET',
+            headers: {
+                'Authorization': 'cal_live_4f109ca43925133a47ee79d8c938ae26'
+            }
+        });
+        const dados = await resposta.json();
+        console.log('Dados recebidos do Cal:', dados); // Log de depuração
+        return dados;
+    } catch (erro) {
+        console.error('Erro ao obter dados:', erro);
+    }
+}
+
+
+// Combinar dados
+        async function combinarDados() {
+    try {
+        const dados = coletarDados();
+        const dadosExternos = await obterDadosCal();
+
+        const dadosCombinados = {
+            dados: dados,
+            dadosExternos: dadosExternos
+        };
+
+        console.log('Dados combinados:', dadosCombinados); // Log de depuração
+        return dadosCombinados;
+    } catch (error) {
+        console.error('Erro ao combinar dados:', error);
+    }
+}
+
+
+
+
+
+
+        async function enviarDadosWebhook() {
+    try {
+        console.log('Enviando dados para o webhook...'); // Log de depuração
+        const dadosParaWebhook = await combinarDados();
+        console.log('Dados para o webhook:', dadosParaWebhook); // Verifique os dados
+        const response = await fetch('https://webhook-test.com/ece3849ad6a1c439182b3c2ed585f9c5', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dadosParaWebhook)
+        });
+        const data = await response.json();
+        console.log('Sucesso:', data);
+    } catch (error) {
+        console.error('Erro ao enviar dados para o webhook:', error);
+    }
+}
+
+
+
+
+        
+    function mostrarIframe() {
+        // Atualiza o calendário com a duração total
+        atualizarCalendario();
+        
+        // Exibe o formulário
+        document.getElementById('tipoDeCoisas').style.display = 'block';
+        
+        // Exibe o iframe (Calendário)
+        document.getElementById('calendar-container').style.display = 'block';
+
+	// Envia os dados para o webhook
+        enviarDadosWebhook();
+    }
+
+    function atualizarCalendario() {
+    let duration = calcularDuracao();
+    loadCalendar(duration);
+}
+        // Inicializa o calendário
+        Cal("init", "hairharmony", { origin: "https://cal.com" });
+
+
+  </script>
+</body>
+</html>
+
