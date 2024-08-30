@@ -295,56 +295,67 @@ p.register-text{
 
 
     <script>
-        // Sua configuração do Firebase
-        var firebaseConfig = {
-            apiKey: "AIzaSyBDOHTyPTUIHFT0dg-QXBLhfTBmUuozHds",
-            authDomain: "bancodbtcc.firebaseapp.com",
-	    databaseURL: "https://bancodbtcc.firebaseio.com",
-            projectId: "bancodbtcc",
-            storageBucket: "bancodbtcc.appspot.com",
-            messagingSenderId: "342384913014",
-            appId: "1:342384913014:web:e7350fb6cad39146fbcd57",
-            measurementId: "G-N8ZXX63YZE"
-        };
+    // Sua configuração do Firebase
+    var firebaseConfig = {
+        apiKey: "AIzaSyBDOHTyPTUIHFT0dg-QXBLhfTBmUuozHds",
+        authDomain: "bancodbtcc.firebaseapp.com",
+        databaseURL: "https://bancodbtcc.firebaseio.com",
+        projectId: "bancodbtcc",
+        storageBucket: "bancodbtcc.appspot.com",
+        messagingSenderId: "342384913014",
+        appId: "1:342384913014:web:e7350fb6cad39146fbcd57",
+        measurementId: "G-N8ZXX63YZE"
+    };
 
-        // Inicializa o Firebase
-        firebase.initializeApp(firebaseConfig);
-        var database = firebase.database();
-        var auth = firebase.auth();
+    // Inicializa o Firebase
+    firebase.initializeApp(firebaseConfig);
+    var database = firebase.database();
+    var auth = firebase.auth();
 
-        document.getElementById('registerForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+    // Mapeamento de mensagens de erro
+    var errorMessages = {
+        'auth/email-already-in-use': 'Este e-mail já está em uso. Por favor, tente outro.',
+        'auth/invalid-email': 'E-mail inválido. Por favor, verifique e tente novamente.',
+        'auth/weak-password': 'A senha é muito fraca. Escolha uma senha mais forte.',
+        'auth/operation-not-allowed': 'Cadastro de usuários está desabilitado. Entre em contato com o suporte.',
+        'auth/network-request-failed': 'Falha na conexão. Verifique sua conexão com a internet e tente novamente.',
+        // Adicione outros códigos de erro conforme necessário
+    };
 
-            var nome = document.getElementById('nome').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+    document.getElementById('registerForm').addEventListener('submit', function (e) {
+        e.preventDefault();
 
-            // Cria o usuário com o email e senha
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(function (userCredential) {
-                    // Usuário criado com sucesso
-                    var user = userCredential.user;
-                    var userId = user.uid;
+        var nome = document.getElementById('nome').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
 
-                    // Salva o nome e email do usuário no Realtime Database
-                    database.ref('users/' + userId).set({
-                        id: userId,
-                        nome: nome,
-                        email: email
-                    }).then(function () {
-                        document.getElementById('message').innerText = 'Usuário cadastrado com sucesso!';
-                        document.getElementById('registerForm').reset();
-                    }).catch(function (error) {
-                        console.error("Erro ao salvar no Realtime Database:", error);
-                        document.getElementById('message').innerText = `Erro ao salvar no Realtime Database: ${error.message}`;
-                    });
-                })
-                .catch(function (error) {
-                    var errorCode = error.code;
-                    var errorMessage = error.message;
-                    document.getElementById('message').innerText = `Erro: ${errorMessage}`;
+        // Cria o usuário com o email e senha
+        auth.createUserWithEmailAndPassword(email, password)
+            .then(function (userCredential) {
+                // Usuário criado com sucesso
+                var user = userCredential.user;
+                var userId = user.uid;
+
+                // Salva o nome e email do usuário no Realtime Database
+                database.ref('users/' + userId).set({
+                    id: userId,
+                    nome: nome,
+                    email: email
+                }).then(function () {
+                    document.getElementById('message').innerText = 'Usuário cadastrado com sucesso!';
+                    document.getElementById('registerForm').reset();
+                }).catch(function (error) {
+                    console.error("Erro ao salvar no Realtime Database:", error);
+                    document.getElementById('message').innerText = `Erro ao salvar no Realtime Database: ${error.message}`;
                 });
-        });
-    </script>
+            })
+            .catch(function (error) {
+                var errorCode = error.code;
+                var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
+                document.getElementById('message').innerText = errorMessage;
+            });
+    });
+</script>
+
 </body>
 </html>
