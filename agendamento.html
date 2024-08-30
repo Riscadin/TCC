@@ -538,12 +538,12 @@ async function obterDadosCal() {
         }
 
         // Evento para fechar o popup
-        document.getElementById('fechar').addEventListener('click', function() {
+        document.getElementById('fechar').onclick = function() {
             document.getElementById('popup').style.display = 'none';
             document.getElementById('overlay').style.display = 'none';
             // Remove o blur do conteúdo da página
             document.getElementById('conteudo').classList.remove('blur');
-        });
+        };
 
   </script>
 </body>
