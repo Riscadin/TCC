@@ -174,59 +174,59 @@ p.register-text{
     font-size: 14px;
     line-height: 1.6;
 }
-@media (max-width: 768px) {
-    header {
-        position: relative; /* Cabeçalho se move com o fluxo do documento em telas menores */
-        padding: 10px 5px; /* Ajusta o padding para se adequar a telas menores */
-    }
+/* Estilos Responsivos */
+        @media (max-width: 768px) {
+            header {
+                padding: 10px 5px;
+            }
 
-    nav h1 {
-        font-size: 16px;
-    }
+            nav h1 {
+                font-size: 20px;
+            }
 
-    nav p {
-        font-size: 12px;
-    }
+            nav p {
+                font-size: 14px;
+            }
 
-    .container {
-        flex-direction: column;
-    }
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
 
-    .register-form, .info-section {
-        width: 100%;
-        margin: 0;
-        padding: 10px;
-    }
+            nav ul li {
+                margin-bottom: 10px;
+            }
 
-    .info-text {
-        font-size: 12px;
-    }
-}
+            .container {
+                margin-top: 50px;
+            }
+        }
 
-@media (max-width: 480px) {
-    nav ul {
-        flex-direction: column;
-        align-items: center;
-        margin-right: 0;
-    }
+        @media (max-width: 480px) {
+            nav h1 {
+                font-size: 18px;
+            }
 
-    nav ul li {
-        margin-left: 0;
-        margin-bottom: 10px;
-    }
+            nav p {
+                font-size: 12px;
+            }
 
-    .register-form input, .register-form button {
-        max-width: 100%; /* Ajuste para telas pequenas */
-    }
+            .register-form h1 {
+                font-size: 20px;
+            }
 
-    .register-text {
-        font-size: 14px;
-    }
+            .register-form input, .register-form button {
+                font-size: 14px;
+            }
 
-    .info-text {
-        font-size: 11px;
-    }
-}
+            .register-text {
+                font-size: 14px;
+            }
+
+            .info-text {
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
