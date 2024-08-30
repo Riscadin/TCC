@@ -206,6 +206,48 @@
             background-color: #99ae8d;
             border-radius: 4px;
         }
+	.blur {
+            filter: blur(5px);
+            pointer-events: none;
+        }
+
+        /* Estilo do popup */
+        #popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            text-align: center;
+        }
+
+        /* Estilo da sobreposição (overlay) */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 999;
+        }
+
+        /* Botão para fechar o popup */
+        #fechar {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -221,6 +263,15 @@
         <p>Escolha seus serviços</p>
     </header>
     <main class="conteudo">
+
+	    <div id="overlay"></div>
+	
+	    <div id="popup">
+	        <p>O agendamento foi feito com sucesso!</p>
+	        <button id="fechar">Fechar</button>
+	    </div>
+
+	    
         <div class="opcoes">
             <label><input type="checkbox" id="corte-checkbox" data-duration="90"> Corte</label>
             <label><input type="checkbox" id="tintura-checkbox" data-duration="150"> Tintura</label>
@@ -464,6 +515,35 @@ async function obterDadosCal() {
         // Inicializa o calendário
         Cal("init", "hairharmony", { origin: "https://cal.com" });
 
+
+
+
+
+
+ // Função para obter o valor de um parâmetro da URL
+        function getParametroURL(nome) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(nome);
+        }
+
+        // Verifica o valor do parâmetro 'agendamento'
+        const agendamento = getParametroURL('agendamento');
+
+        if (agendamento === 'true') {
+            // Exibe o popup e o overlay
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            // Aplica o blur ao conteúdo da página
+            document.getElementById('conteudo').classList.add('blur');
+        }
+
+        // Evento para fechar o popup
+        document.getElementById('fechar').addEventListener('click', function() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+            // Remove o blur do conteúdo da página
+            document.getElementById('conteudo').classList.remove('blur');
+        });
 
   </script>
 </body>
