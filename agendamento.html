@@ -516,7 +516,11 @@ async function obterDadosCal() {
         Cal("init", "hairharmony", { origin: "https://cal.com" });
 
 
-
+function fecharPopup() {
+            document.getElementById('popup').style.display = 'none';
+            document.getElementById('overlay').style.display = 'none';
+            document.getElementById('conteudo').classList.remove('blur');
+        }
 
 
 
@@ -537,13 +541,7 @@ async function obterDadosCal() {
             document.getElementById('conteudo').classList.add('blur');
         }
 
-        // Evento para fechar o popup
-        document.getElementById('fechar').onclick = function() {
-            document.getElementById('popup').style.display = 'none';
-            document.getElementById('overlay').style.display = 'none';
-            // Remove o blur do conteúdo da página
-            document.getElementById('conteudo').classList.remove('blur');
-        };
+        document.getElementById('fechar').addEventListener('click', fecharPopup);
 
   </script>
 </body>
