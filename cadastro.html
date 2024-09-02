@@ -423,11 +423,9 @@ p.register-text{
                     });
                 })
                 .then(function () {
-                    console.log("Usuário criado com sucesso");
-                    // Exibe o popup de sucesso
-                    showPopup();
-                    // Limpa o formulário
+                    
                     document.getElementById('registerForm').reset();
+		    showPopup();
                 })
                 .catch(function (error) {
                     var errorCode = error.code;
