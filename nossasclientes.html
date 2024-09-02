@@ -117,7 +117,66 @@
             height: auto;
             border: 1px solid #333;
         }
+         @media (max-width: 768px) {
+            .container {
+                padding: 10px;
+                height: auto;
+            }
 
+            header h1 {
+                font-size: 1.5em;
+            }
+
+            header p {
+                font-size: 1em;
+            }
+
+            header img {
+                max-width: 100px;
+                right: 10px;
+            }
+
+            main {
+                flex-direction: column;
+            }
+
+            .testimonials {
+                margin-right: 0;
+            }
+
+            .testimonial-box {
+                padding: 8px;
+            }
+
+            .logo-section {
+                margin-top: 20px;
+                flex: 0 0 auto;
+                padding-left: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.2em;
+            }
+
+            header p {
+                font-size: 0.9em;
+            }
+
+            .testimonial-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .testimonial h2 {
+                font-size: 1.2em;
+            }
+
+            .testimonial p {
+                font-size: 0.9em;
+            }
+        }
     </style>
 </head>
 <body>
