@@ -419,8 +419,9 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         })
         .then(function () {
             console.log("Usuário criado com sucesso"); // Log de sucesso
-            window.location.href = 'https://riscadin.github.io/TCC/cadastro.html?sucesso=true';
-            document.getElementById('registerForm').reset();
+
+            // Redireciona para o link desejado
+            window.location.href ='https://riscadin.github.io/TCC/cadastro.html?sucesso=true';
         })
         .catch(function (error) {
             var errorCode = error.code;
