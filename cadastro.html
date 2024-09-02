@@ -411,7 +411,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
         })
         .then(function () {
             console.log("Usuário criado com sucesso"); // Log de sucesso
-            setTimeout(showModal, 500); // Exibe o modal após um pequeno delay para verificação
+            window.location.href = 'URL_DESEJADA';
             document.getElementById('registerForm').reset();
         })
         .catch(function (error) {
