@@ -181,43 +181,49 @@ p.register-text{
 	    }
 
 
-	    /* Estilo do popup */
-        #popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            text-align: center;
-        }
-
-        /* Estilo da sobreposição (overlay) */
-        #overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
-            z-index: 999;
-        }
-
-        /* Botão para fechar o popup */
-        #fechar {
-            margin-top: 15px;
-            padding: 10px 20px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+	    .blur {
+		    filter: blur(5px);
+		}
+		
+		/* Estilo do popup */
+		#popup {
+		    display: none;
+		    position: fixed;
+		    top: 50%;
+		    left: 50%;
+		    transform: translate(-50%, -50%);
+		    background-color: white;
+		    padding: 20px;
+		    border-radius: 8px;
+		    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+		    z-index: 1001; /* Certifique-se de que o popup esteja acima do overlay */
+		    text-align: center;
+		    width: 90%; /* Largura do popup para dispositivos móveis */
+		    max-width: 400px; /* Largura máxima para o popup */
+		}
+		
+		/* Estilo da sobreposição (overlay) */
+		#overlay {
+		    display: none;
+		    position: fixed;
+		    top: 0;
+		    left: 0;
+		    width: 100%;
+		    height: 100%;
+		    background-color: rgba(0, 0, 0, 0.7);
+		    z-index: 1000; /* Certifique-se de que o overlay esteja abaixo do popup */
+		}
+		
+		/* Botão para fechar o popup */
+		#fechar {
+		    margin-top: 15px;
+		    padding: 10px 20px;
+		    background-color: #007bff;
+		    color: white;
+		    border: none;
+		    border-radius: 5px;
+		    cursor: pointer;
+		}
 
 
 
@@ -433,34 +439,44 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
 
 
-	    const fecharBtn = document.getElementById('fechar');
+		    // Função para exibir o popup
+	function showPopup() {
 	    const popup = document.getElementById('popup');
 	    const overlay = document.getElementById('overlay');
+	    const conteudo = document.body; // Ou use um id específico se desejar focar uma parte específica da página
 	
-	    // Adiciona um evento de clique ao botão de fechar
-	    fecharBtn.addEventListener('click', function() {
-	        popup.style.display = 'none';  // Esconde o popup
-	        overlay.style.display = 'none'; // Esconde o overlay
-	    });
+	    popup.style.display = 'block';
+	    overlay.style.display = 'block';
+	    conteudo.classList.add('blur'); // Aplica o blur ao conteúdo
+	}
 
-
-	    
-	// Função para obter o valor de um parâmetro da URL
-        function getParametroURL(nome) {
-            const params = new URLSearchParams(window.location.search);
-            return params.get(nome);
-        }
-
-        // Verifica o valor do parâmetro 'agendamento'
-        const sucesso = getParametroURL('sucesso');
-
-        if (sucesso === 'true') {
-            // Exibe o popup e o overlay
-            document.getElementById('popup').style.display = 'block';
-            document.getElementById('overlay').style.display = 'block';
-            // Aplica o blur ao conteúdo da página
-            document.getElementById('conteudo').classList.add('blur');
-        }
+	// Função para fechar o popup
+	function closePopup() {
+	    const popup = document.getElementById('popup');
+	    const overlay = document.getElementById('overlay');
+	    const conteudo = document.body; // Ou use um id específico se desejar focar uma parte específica da página
+	
+	    popup.style.display = 'none';
+	    overlay.style.display = 'none';
+	    conteudo.classList.remove('blur'); // Remove o blur do conteúdo
+	}
+	
+	// Adiciona um evento de clique ao botão de fechar
+	document.getElementById('fechar').addEventListener('click', closePopup);
+	
+	// Verifica o valor do parâmetro 'sucesso' na URL
+	const sucesso = getParametroURL('sucesso');
+	if (sucesso === 'true') {
+	    showPopup();
+	}
+	
+	// Clique fora do popup para fechar
+	window.onclick = function(event) {
+	    const popup = document.getElementById('popup');
+	    if (event.target === overlay) {
+	        closePopup();
+	    }
+	}
 
 
 	    
