@@ -373,57 +373,55 @@ p.register-text{
 
  // Função para exibir o modal
         function showModal() {
-            var modal = document.getElementById('successModal');
-            var closeBtn = document.querySelector('.close');
+    var modal = document.getElementById('successModal');
+    var closeBtn = document.querySelector('.close');
 
-            modal.style.display = 'block';
+    modal.style.display = 'block';
 
-            closeBtn.onclick = function () {
-                modal.style.display = 'none';
-            }
+    closeBtn.onclick = function () {
+        modal.style.display = 'none';
+    }
 
-            window.onclick = function (event) {
-                if (event.target == modal) {
-                    modal.style.display = 'none';
-                }
-            }
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
         }
+    }
+}
 
 	    
     document.getElementById('registerForm').addEventListener('submit', function (e) {
-        e.preventDefault();
+    e.preventDefault();
 
-        var nome = document.getElementById('nome').value;
-        var email = document.getElementById('email').value;
-        var password = document.getElementById('password').value;
+    var nome = document.getElementById('nome').value;
+    var email = document.getElementById('email').value;
+    var password = document.getElementById('password').value;
 
-        // Cria o usuário com o email e senha
-        auth.createUserWithEmailAndPassword(email, password)
-            .then(function (userCredential) {
-                // Usuário criado com sucesso
-                var user = userCredential.user;
-                var userId = user.uid;
+    // Cria o usuário com o email e senha
+    auth.createUserWithEmailAndPassword(email, password)
+        .then(function (userCredential) {
+            // Usuário criado com sucesso
+            var user = userCredential.user;
+            var userId = user.uid;
 
-                // Salva o nome e email do usuário no Realtime Database
-                database.ref('users/' + userId).set({
-                    id: userId,
-                    nome: nome,
-                    email: email
-                }).then(function () {
-		    // Exibe o modal de sucesso
-		    showModal();
-                    document.getElementById('registerForm').reset();
-                }).catch(function (error) {
-                    console.error("Erro ao salvar no Realtime Database:", error);
-                    document.getElementById('message').innerText = `Erro ao salvar no Realtime Database: ${error.message}`;
-                });
-            })
-            .catch(function (error) {
-                var errorCode = error.code;
-                var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
-                document.getElementById('message').innerText = errorMessage;
+            // Salva o nome e email do usuário no Realtime Database
+            return database.ref('users/' + userId).set({
+                id: userId,
+                nome: nome,
+                email: email
             });
-    });
+        })
+        .then(function () {
+            // Exibe o modal de sucesso após salvar no Realtime Database
+            showModal();
+            document.getElementById('registerForm').reset();
+        })
+        .catch(function (error) {
+            var errorCode = error.code;
+            var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
+            document.getElementById('message').innerText = errorMessage;
+        });
+});
 </script>
 
 </body>
