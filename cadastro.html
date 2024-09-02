@@ -182,16 +182,16 @@ p.register-text{
 
 
 	    .modal {
-            display: none; /* Modal oculto por padrão */
-            position: fixed;
-            z-index: 200; /* Certifique-se de que o modal fique acima de outros elementos */
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            overflow: auto;
-            background-color: rgba(0, 0, 0, 0.4); /* Fundo escurecido */
-        }
+		    display: none;
+		    position: fixed;
+		    z-index: 200;
+		    left: 0;
+		    top: 0;
+		    width: 100%;
+		    height: 100%;
+		    overflow: auto;
+		    background-color: rgba(0, 0, 0, 0.4);
+		}
 
         .modal-content {
             background-color: #fefefe;
@@ -372,11 +372,13 @@ p.register-text{
 
 
  // Função para exibir o modal
-        function showModal() {
+function showModal() {
     var modal = document.getElementById('successModal');
     var closeBtn = document.querySelector('.close');
 
-    modal.style.display = 'block';
+    console.log("Modal é:", modal); // Log para verificar se o modal está sendo referenciado corretamente
+
+    modal.style.display = 'block'; // Exibe o modal
 
     closeBtn.onclick = function () {
         modal.style.display = 'none';
@@ -389,22 +391,18 @@ p.register-text{
     }
 }
 
-	    
-    document.getElementById('registerForm').addEventListener('submit', function (e) {
+document.getElementById('registerForm').addEventListener('submit', function (e) {
     e.preventDefault();
 
     var nome = document.getElementById('nome').value;
     var email = document.getElementById('email').value;
     var password = document.getElementById('password').value;
 
-    // Cria o usuário com o email e senha
     auth.createUserWithEmailAndPassword(email, password)
         .then(function (userCredential) {
-            // Usuário criado com sucesso
             var user = userCredential.user;
             var userId = user.uid;
 
-            // Salva o nome e email do usuário no Realtime Database
             return database.ref('users/' + userId).set({
                 id: userId,
                 nome: nome,
@@ -412,8 +410,8 @@ p.register-text{
             });
         })
         .then(function () {
-            // Exibe o modal de sucesso após salvar no Realtime Database
-            showModal();
+            console.log("Usuário criado com sucesso"); // Log de sucesso
+            setTimeout(showModal, 500); // Exibe o modal após um pequeno delay para verificação
             document.getElementById('registerForm').reset();
         })
         .catch(function (error) {
