@@ -342,6 +342,16 @@ p.register-text{
                     nome: nome,
                     email: email
                 }).then(function () {
+
+
+			alert('Usuário cadastrado com sucesso!');
+
+            document.getElementById('message').innerText = 'Usuário cadastrado com sucesso!';
+
+
+
+
+			
                     document.getElementById('message').innerText = 'Usuário cadastrado com sucesso!';
                     document.getElementById('registerForm').reset();
                 }).catch(function (error) {
