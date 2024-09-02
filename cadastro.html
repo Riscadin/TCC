@@ -311,6 +311,14 @@ p.register-text{
         </nav>
     </header>
 
+<div id="overlay"></div>
+	
+	    <div id="popup">
+	        <p>O cadastro foi realizado com sucesso!</p>
+	        <button id="fechar">Fechar</button>
+	    </div>
+
+	
     <div class="container">
         <div class="register-form">
            <form id="registerForm">
@@ -420,6 +428,28 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
             document.getElementById('message').innerText = errorMessage;
         });
 });
+
+
+
+	// Função para obter o valor de um parâmetro da URL
+        function getParametroURL(nome) {
+            const params = new URLSearchParams(window.location.search);
+            return params.get(nome);
+        }
+
+        // Verifica o valor do parâmetro 'agendamento'
+        const sucesso = getParametroURL('sucesso');
+
+        if (sucesso === 'true') {
+            // Exibe o popup e o overlay
+            document.getElementById('popup').style.display = 'block';
+            document.getElementById('overlay').style.display = 'block';
+            // Aplica o blur ao conteúdo da página
+            document.getElementById('conteudo').classList.add('blur');
+        }
+
+
+	    
 </script>
 
 </body>
