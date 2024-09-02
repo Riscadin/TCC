@@ -413,44 +413,51 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
 
 
-		    // Função para exibir o popup
-	function showPopup() {
-	    const popup = document.getElementById('popup');
-	    const overlay = document.getElementById('overlay');
-	    const conteudo = document.body; // Ou use um id específico se desejar focar uma parte específica da página
-	
-	    popup.style.display = 'block';
-	    overlay.style.display = 'block';
-	    conteudo.classList.add('blur'); // Aplica o blur ao conteúdo
-	}
+		    // Função para obter parâmetros da URL
+    function getParametroURL(param) {
+        var urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(param);
+    }
 
-	// Função para fechar o popup
-	function closePopup() {
-	    const popup = document.getElementById('popup');
-	    const overlay = document.getElementById('overlay');
-	    const conteudo = document.body; // Ou use um id específico se desejar focar uma parte específica da página
-	
-	    popup.style.display = 'none';
-	    overlay.style.display = 'none';
-	    conteudo.classList.remove('blur'); // Remove o blur do conteúdo
-	}
-	
-	// Adiciona um evento de clique ao botão de fechar
-	document.getElementById('fechar').addEventListener('click', closePopup);
-	
-	// Verifica o valor do parâmetro 'sucesso' na URL
-	const sucesso = getParametroURL('sucesso');
-	if (sucesso === 'true') {
-	    showPopup();
-	}
-	
-	// Clique fora do popup para fechar
-	window.onclick = function(event) {
-	    const popup = document.getElementById('popup');
-	    if (event.target === overlay) {
-	        closePopup();
-	    }
-	}
+    // Função para exibir o popup
+    function showPopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const conteudo = document.body;
+
+        popup.style.display = 'block';
+        overlay.style.display = 'block';
+        conteudo.classList.add('blur');
+    }
+
+    // Função para fechar o popup
+    function closePopup() {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        const conteudo = document.body;
+
+        popup.style.display = 'none';
+        overlay.style.display = 'none';
+        conteudo.classList.remove('blur');
+    }
+
+    // Adiciona um evento de clique ao botão de fechar
+    document.getElementById('fechar').addEventListener('click', closePopup);
+
+    // Verifica o valor do parâmetro 'sucesso' na URL
+    const sucesso = getParametroURL('sucesso');
+    if (sucesso === 'true') {
+        showPopup();
+    }
+
+    // Clique fora do popup para fechar
+    window.onclick = function(event) {
+        const popup = document.getElementById('popup');
+        const overlay = document.getElementById('overlay');
+        if (event.target === overlay) {
+            closePopup();
+        }
+    }
 
 
 	    
