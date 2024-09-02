@@ -350,12 +350,6 @@ p.register-text{
             </p>
         </div>
     </div>
-    <div id="successModal" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Usuário cadastrado com sucesso!</p>
-        </div>
-    </div>
     
     <script>
     // Sua configuração do Firebase
@@ -385,26 +379,6 @@ p.register-text{
         // Adicione outros códigos de erro conforme necessário
     };
 
-
- // Função para exibir o modal
-function showModal() {
-    var modal = document.getElementById('successModal');
-    var closeBtn = document.querySelector('.close');
-
-    console.log("Modal é:", modal); // Log para verificar se o modal está sendo referenciado corretamente
-
-    modal.style.display = 'block'; // Exibe o modal
-
-    closeBtn.onclick = function () {
-        modal.style.display = 'none';
-    }
-
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = 'none';
-        }
-    }
-}
 
 document.getElementById('registerForm').addEventListener('submit', function (e) {
     e.preventDefault();
