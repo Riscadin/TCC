@@ -412,7 +412,6 @@ p.register-text{
                 }).then(function () {
 		    // Exibe o modal de sucesso
 		    showModal();
-                    document.getElementById('message').innerText = 'Usuário cadastrado com sucesso!';
                     document.getElementById('registerForm').reset();
                 }).catch(function (error) {
                     console.error("Erro ao salvar no Realtime Database:", error);
