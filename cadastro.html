@@ -431,13 +431,17 @@ p.register-text{
                     });
                 })
                 .then(function () {
-                    window.location.href = 'https://riscadin.github.io/TCC/?sucesso=true';
+                     document.getElementById('registerForm').reset();
                 })
                 .catch(function (error) {
                     var errorCode = error.code;
                     var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
                     document.getElementById('message').innerText = errorMessage;
                 });
+		if (document.getElementById('message').value.trim() === '') {
+		    // Código a ser executado se a mensagem estiver vazia
+		    abrir();
+		}
         });
 
         // Evento para fechar o popup ao clicar no botão "Fechar"
@@ -459,6 +463,11 @@ p.register-text{
             }
         });
 
+
+
+	function abrir() {
+            window.location.href = 'https://riscadin.github.io/TCC/?sucesso=true';
+        }
 
 	    
 </script>
