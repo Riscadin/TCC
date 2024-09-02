@@ -318,15 +318,10 @@ p.register-text{
         </nav>
     </header>
 
-<div id="overlay"></div>
-	
-	    <div id="popup">
-	        <p>O cadastro foi realizado com sucesso!</p>
-	        <button id="fechar">Fechar</button>
-	    </div>
+
 
 	
-    <div class="container">
+     <div class="container" id="conteudo">
         <div class="register-form">
            <form id="registerForm">
             <label for="nome">Nome</label>
@@ -380,83 +375,85 @@ p.register-text{
     };
 
 
-document.getElementById('registerForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    var nome = document.getElementById('nome').value;
-    var email = document.getElementById('email').value;
-    var password = document.getElementById('password').value;
-
-    auth.createUserWithEmailAndPassword(email, password)
-        .then(function (userCredential) {
-            var user = userCredential.user;
-            var userId = user.uid;
-
-            return database.ref('users/' + userId).set({
-                id: userId,
-                nome: nome,
-                email: email
-            });
-        })
-        .then(function () {
-            console.log("Usuário criado com sucesso");
-            window.location.href ='https://riscadin.github.io/TCC/cadastro.html?sucesso=true';
-        })
-        .catch(function (error) {
-            var errorCode = error.code;
-            var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
-            document.getElementById('message').innerText = errorMessage;
-        });
-});
-
-
-
-		    
-    // Função para obter o parâmetro da URL
-	function getParametroURL(nome) {
-	    var urlParams = new URLSearchParams(window.location.search);
-	    return urlParams.get(nome);
-	}
-
-    // Função para exibir o popup
-    function showPopup() {
-        const popup = document.getElementById('popup');
-        const overlay = document.getElementById('overlay');
-        const conteudo = document.body;
-
-        popup.style.display = 'block';
-        overlay.style.display = 'block';
-        conteudo.classList.add('blur');
-    }
-
-    // Função para fechar o popup
-    function closePopup() {
-        const popup = document.getElementById('popup');
-        const overlay = document.getElementById('overlay');
-        const conteudo = document.body;
-
-        popup.style.display = 'none';
-        overlay.style.display = 'none';
-        conteudo.classList.remove('blur');
-    }
-
-    // Adiciona um evento de clique ao botão de fechar
-    document.getElementById('fechar').addEventListener('click', closePopup);
-
-    // Verifica o valor do parâmetro 'sucesso' na URL
-    const sucesso = getParametroURL('sucesso');
-    if (sucesso == 'true') {
-        showPopup();
-    }
-
-    // Clique fora do popup para fechar
-    window.onclick = function(event) {
-        const popup = document.getElementById('popup');
-        const overlay = document.getElementById('overlay');
-        if (event.target === overlay) {
-            closePopup();
+// Função para obter parâmetros da URL
+        function getParametroURL(nome) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(nome);
         }
-    }
+
+        // Função para exibir o popup
+        function showPopup() {
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+            const conteudo = document.getElementById('conteudo');
+
+            popup.style.display = 'block';
+            overlay.style.display = 'block';
+            conteudo.classList.add('blur'); // Aplica o desfoque ao conteúdo principal
+        }
+
+        // Função para fechar o popup
+        function closePopup() {
+            const popup = document.getElementById('popup');
+            const overlay = document.getElementById('overlay');
+            const conteudo = document.getElementById('conteudo');
+
+            popup.style.display = 'none';
+            overlay.style.display = 'none';
+            conteudo.classList.remove('blur'); // Remove o desfoque do conteúdo principal
+        }
+
+        // Evento de submissão do formulário
+        document.getElementById('registerForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            auth.createUserWithEmailAndPassword(email, password)
+                .then(function (userCredential) {
+                    var user = userCredential.user;
+                    var userId = user.uid;
+
+                    return database.ref('users/' + userId).set({
+                        id: userId,
+                        nome: nome,
+                        email: email
+                    });
+                })
+                .then(function () {
+                    console.log("Usuário criado com sucesso");
+                    // Exibe o popup de sucesso
+                    showPopup();
+                    // Limpa o formulário
+                    document.getElementById('registerForm').reset();
+                })
+                .catch(function (error) {
+                    var errorCode = error.code;
+                    var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
+                    document.getElementById('message').innerText = errorMessage;
+                });
+        });
+
+        // Evento para fechar o popup ao clicar no botão "Fechar"
+        document.getElementById('fechar').addEventListener('click', closePopup);
+
+        // Evento para fechar o popup ao clicar fora dele
+        window.addEventListener('click', function (event) {
+            const overlay = document.getElementById('overlay');
+            if (event.target === overlay) {
+                closePopup();
+            }
+        });
+
+        // Verifica se o parâmetro 'sucesso' está na URL e exibe o popup se necessário
+        document.addEventListener('DOMContentLoaded', function () {
+            const sucesso = getParametroURL('sucesso');
+            if (sucesso === 'true') {
+                showPopup();
+            }
+        });
 
 
 	    
