@@ -399,9 +399,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
             });
         })
         .then(function () {
-            console.log("Usuário criado com sucesso"); // Log de sucesso
-
-            // Redireciona para o link desejado
+            console.log("Usuário criado com sucesso");
             window.location.href ='https://riscadin.github.io/TCC/cadastro.html?sucesso=true';
         })
         .catch(function (error) {
@@ -413,11 +411,12 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
 
 
-		    // Função para obter parâmetros da URL
-    function getParametroURL(param) {
-        var urlParams = new URLSearchParams(window.location.search);
-        return urlParams.get(param);
-    }
+		    
+    // Função para obter o parâmetro da URL
+	function getParametroURL(nome) {
+	    var urlParams = new URLSearchParams(window.location.search);
+	    return urlParams.get(nome);
+	}
 
     // Função para exibir o popup
     function showPopup() {
@@ -446,7 +445,7 @@ document.getElementById('registerForm').addEventListener('submit', function (e) 
 
     // Verifica o valor do parâmetro 'sucesso' na URL
     const sucesso = getParametroURL('sucesso');
-    if (sucesso === 'true') {
+    if (sucesso == 'true') {
         showPopup();
     }
 
