@@ -327,13 +327,13 @@ p.register-text{
             <label for="nome">Nome</label>
             <input type="text" id="nome" name="nome" required>
 
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required>
+            <label>Email:</label>
+            <input type="email" id="userEmail">
+            <br><br>
+            <label>Password:</label>
+            <input type="password" id="userPassword">
 
-            <label for="password">Senha</label>
-            <input type="password" id="password" name="password" required>
-
-            <button type="submit">CADASTRAR</button>
+            <button type="submit" id="signUpBtn">CADASTRAR</button>
             <p id="message"></p>
            </form>
             <p class="register-text">JÁ POSSUI UMA CONTA? <a href="index.html" >LOGIN</a></p>
@@ -354,8 +354,13 @@ p.register-text{
 <!-- Overlay -->
 <div id="overlay"></div>
 	
-    <script>
-    // Sua configuração do Firebase
+    <script type="module">
+                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+                import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+                import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+                import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+    
+                // Sua configuração do Firebase
     var firebaseConfig = {
         apiKey: "AIzaSyBDOHTyPTUIHFT0dg-QXBLhfTBmUuozHds",
         authDomain: "bancodbtcc.firebaseapp.com",
@@ -367,10 +372,15 @@ p.register-text{
         measurementId: "G-N8ZXX63YZE"
     };
 
-    // Inicializa o Firebase
-    firebase.initializeApp(firebaseConfig);
-    var database = firebase.database();
-    var auth = firebase.auth();
+    const app = initializeApp(firebaseConfig);
+        console.log("Firebase initialized:", app);
+
+        const auth = getAuth();
+        console.log("Firebase Auth initialized:", auth);
+
+        const db = getDatabase();
+        console.log("Firebase Database initialized:", db);
+
 
     // Mapeamento de mensagens de erro
     var errorMessages = {
@@ -411,47 +421,49 @@ p.register-text{
             conteudo.classList.remove('blur'); // Remove o desfoque do conteúdo principal
         }
 
-        // Verifica se o parâmetro 'sucesso' está na URL e exibe o popup se necessário
-        document.addEventListener('DOMContentLoaded', function () {
-            const sucesso = getParametroURL('sucesso');
-            if (sucesso === 'true') {
-                showPopup();
-            }
-        });
+        
 
 	    
-        // Evento de submissão do formulário
-        let erroAoCadastrar = false;
+        document.getElementById('registerForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Impede o envio padrão do formulário
 
-auth.createUserWithEmailAndPassword(email, password)
-    .then(function(userCredential) {
-        // Sucesso ao criar o usuário
-        var user = userCredential.user;
-        var userId = user.uid;
+    // Captura os valores do formulário
 
-        // Salva os dados do usuário no banco de dados
-        return database.ref('users/' + userId).set({
-            id: userId,
-            nome: nome,
-            email: email
+
+
+});
+        let signUpBtn = document.getElementById('signUpBtn');
+        let userEmail = document.getElementById('userEmail');
+        let userPassword = document.getElementById('userPassword');
+
+        signUpBtn.addEventListener('click', () => {
+           const email = userEmail.value;
+            const password = userPassword.value;
+            
+            var erroAoCadastrar = false;
+            createUserWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    showPopup();
+                })
+                .catch((error) => {
+                    console.error("Error signing up:", error.code, error.message);
+                    alert(`Error signing up: ${error.message}`);
+                })
+                .finally(function() {
+                    if (!erroAoCadastrar) {
+                    } else {
+                        console.log("Erro ao cadastrar usuário. Redirecionamento não será executado.");
+                    }
+                });
         });
-    })
-    .catch(function(error) {
-        // Tratar o erro aqui
-        erroAoCadastrar = true;  // Marca que houve um erro
-        var errorCode = error.code;
-        var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
-        console.error("Erro:", errorMessage);
-        document.getElementById('message').innerText = errorMessage;
-    })
-    .finally(function() {
-        // Executa sempre, mas só chama a função adicional se não houve erro
-        if (!erroAoCadastrar) {
-            abrir();
-        } else {
-            console.log("Erro ao cadastrar usuário. Função adicional não será executada.");
-        }
-    });
+
+// Exibe o popup se o parâmetro 'sucesso' estiver na URL
+document.addEventListener('DOMContentLoaded', function() {
+    const sucesso = getParametroURL('sucesso');
+    if (sucesso === 'true') {
+        showPopup();
+    }
+});
 		
         
 
