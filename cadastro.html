@@ -412,38 +412,39 @@ p.register-text{
         }
 
         // Evento de submissão do formulário
-        document.getElementById('registerForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+        let erroAoCadastrar = false;
 
-            var nome = document.getElementById('nome').value;
-            var email = document.getElementById('email').value;
-            var password = document.getElementById('password').value;
+auth.createUserWithEmailAndPassword(email, password)
+    .then(function(userCredential) {
+        // Sucesso ao criar o usuário
+        var user = userCredential.user;
+        var userId = user.uid;
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .then(function (userCredential) {
-                    var user = userCredential.user;
-                    var userId = user.uid;
-
-                    return database.ref('users/' + userId).set({
-                        id: userId,
-                        nome: nome,
-                        email: email
-                    });
-                })
-                .then(function () {
-                     document.getElementById('registerForm').reset();
-			abrir();
-                })
-                .catch(function (error) {
-                    var errorCode = error.code;
-                    var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
-                    document.getElementById('message').innerText = errorMessage;
-                });
-		if (document.getElementById('message').value.trim() === '') {
-		    // Código a ser executado se a mensagem estiver vazia
-		    abrir();
-		}
+        // Salva os dados do usuário no banco de dados
+        return database.ref('users/' + userId).set({
+            id: userId,
+            nome: nome,
+            email: email
         });
+    })
+    .catch(function(error) {
+        // Tratar o erro aqui
+        erroAoCadastrar = true;  // Marca que houve um erro
+        var errorCode = error.code;
+        var errorMessage = errorMessages[errorCode] || `Erro: ${error.message}`;
+        console.error("Erro:", errorMessage);
+        document.getElementById('message').innerText = errorMessage;
+    })
+    .finally(function() {
+        // Executa sempre, mas só chama a função adicional se não houve erro
+        if (!erroAoCadastrar) {
+            abrir();
+        } else {
+            console.log("Erro ao cadastrar usuário. Função adicional não será executada.");
+        }
+    });
+		
+        
 
         // Evento para fechar o popup ao clicar no botão "Fechar"
         document.getElementById('fechar').addEventListener('click', closePopup);
