@@ -188,7 +188,7 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="submit">LOGIN</button>
+                <button type="module">LOGIN</button>
                 <h1>  </h1>
 		
             </form>
@@ -241,7 +241,7 @@
                 auth.signInWithEmailAndPassword(email, password)
                     .then(function (userCredential) {
                         // Autenticação bem-sucedida
-                        window.location.href = "/agendamento.html";
+                        window.location.href = "agendamento.html";
                     })
                     .catch(function (error) {
                         var errorMessage = error.message;
