@@ -172,31 +172,29 @@
             <h1>LOGUE EM UMA CONTA</h1>
             <p>INVISTA NA SUA BELEZA!</p>
             <ul>
-                <li><a href="sobrenos.html">SOBRE NÓS</a></li>
-                <li><a href="nossasclientes.html">NOSSAS CLIENTES</a></li>
-                <li><a href="contato.html">CONTATO</a></li>
+                <li><a href="/sobreNos.html">SOBRE NÓS</a></li>
+                <li><a href="/NossasClientes.html">NOSSAS CLIENTES</a></li>
+                <li><a href="/contato.html">CONTATO</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="container">
         <div class="register-form">
-            <form>
                 <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
+                <input type="email" id="userEmail" name="email" required>
 
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="password" required>
+                <input type="password" id="userPassword" name="password" required>
 
-                <button type="submit">LOGIN</button>
+                <button id="loginBtn">LOGIN</button>
                 <h1>  </h1>
 		
-            </form>
 	    <p>  </p>	
-            <p class="register-text">JÁ POSSUI UMA CONTA? <a href="cadastro.html">CADASTRO</a></p>
+            <p class="register-text">JÁ POSSUI UMA CONTA? <a href="/cadastro.html">CADASTRO</a></p>
         </div>
         <div class="info-section">
-            <img src="LOGO.jpg" alt="Hair Harmony Beauty Salon Logo">
+            <img src="\Users\dds2023\Desktop\rick\LOGO.jpg" alt="Hair Harmony Beauty Salon Logo">
             <p class="info-text">
                 A beleza desempenha um papel significativo na sociedade contemporânea, influenciando diretamente a percepção de autoestima e bem-estar pessoal. Os salões de beleza são espaços onde a estética e o cuidado pessoal se entrelaçam, oferecendo aos indivíduos uma oportunidade de expressar sua identidade e aumentar sua confiança.
             </p>
@@ -204,13 +202,13 @@
     </div>
 
     <script type="module">
-                import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
-                import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
-                import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
-                import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
-    
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-analytics.js";
+        import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-auth.js";
+        import { getDatabase, ref, child, get, set, update, remove } from "https://www.gstatic.com/firebasejs/10.13.0/firebase-database.js";
+
                 // Sua configuração do Firebase
-    var firebaseConfig = {
+                var firebaseConfig = {
         apiKey: "AIzaSyBDOHTyPTUIHFT0dg-QXBLhfTBmUuozHds",
         authDomain: "bancodbtcc.firebaseapp.com",
         databaseURL: "https://bancodbtcc.firebaseio.com",
@@ -221,7 +219,7 @@
         measurementId: "G-N8ZXX63YZE"
     };
 
-    const app = initializeApp(firebaseConfig);
+        const app = initializeApp(firebaseConfig);
         console.log("Firebase initialized:", app);
 
         const auth = getAuth();
@@ -229,26 +227,25 @@
 
         const db = getDatabase();
         console.log("Firebase Database initialized:", db);
-        
-        document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('form').addEventListener('submit', function (e) {
-                e.preventDefault();
 
-                var email = document.getElementById('email').value;
-                var password = document.getElementById('password').value;
+        let userEmail = document.getElementById('userEmail');
+        let userPassword = document.getElementById('userPassword');
+        let loginBtn = document.getElementById('loginBtn');
 
-                // Autentica o usuário com email e senha
-                auth.signInWithEmailAndPassword(email, password)
-                    .then(function (userCredential) {
-                        window.location.href = "agendamento.html";
-                    })
-                    .catch(function (error) {
-                        var errorMessage = error.message;
+        loginBtn.addEventListener('click', () => {
+            const email = userEmail.value;
+            const password = userPassword.value;
+            signInWithEmailAndPassword(auth, email, password)
+                .then((userCredential) => {
+                    window.location.href = "agendamento.html";
+                })
+                .catch((error) => {
+                    var errorMessage = error.message;
                         console.error("Erro ao fazer login:", errorMessage);
                         alert("Erro ao fazer login: " + errorMessage);
-                    });
-            });
+                });
         });
+        
     </script>
 </body>
 </html>
