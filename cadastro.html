@@ -432,6 +432,7 @@ p.register-text{
                 })
                 .then(function () {
                      document.getElementById('registerForm').reset();
+			abrir();
                 })
                 .catch(function (error) {
                     var errorCode = error.code;
