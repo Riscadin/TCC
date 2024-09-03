@@ -411,6 +411,15 @@ p.register-text{
             conteudo.classList.remove('blur'); // Remove o desfoque do conteúdo principal
         }
 
+        // Verifica se o parâmetro 'sucesso' está na URL e exibe o popup se necessário
+        document.addEventListener('DOMContentLoaded', function () {
+            const sucesso = getParametroURL('sucesso');
+            if (sucesso === 'true') {
+                showPopup();
+            }
+        });
+
+	    
         // Evento de submissão do formulário
         let erroAoCadastrar = false;
 
@@ -457,13 +466,7 @@ auth.createUserWithEmailAndPassword(email, password)
             }
         });
 
-        // Verifica se o parâmetro 'sucesso' está na URL e exibe o popup se necessário
-        document.addEventListener('DOMContentLoaded', function () {
-            const sucesso = getParametroURL('sucesso');
-            if (sucesso === 'true') {
-                showPopup();
-            }
-        });
+        
 
 
 
