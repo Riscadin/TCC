@@ -188,7 +188,7 @@
                 <label for="password">Senha</label>
                 <input type="password" id="password" name="password" required>
 
-                <button type="module">LOGIN</button>
+                <button type="submit">LOGIN</button>
                 <h1>  </h1>
 		
             </form>
@@ -231,7 +231,7 @@
         console.log("Firebase Database initialized:", db);
         
         document.addEventListener('DOMContentLoaded', function () {
-            document.querySelector('form').addEventListener('module', function (e) {
+            document.querySelector('form').addEventListener('submit', function (e) {
                 e.preventDefault();
 
                 var email = document.getElementById('email').value;
@@ -240,7 +240,6 @@
                 // Autentica o usuário com email e senha
                 auth.signInWithEmailAndPassword(email, password)
                     .then(function (userCredential) {
-                        // Autenticação bem-sucedida
                         window.location.href = "agendamento.html";
                     })
                     .catch(function (error) {
