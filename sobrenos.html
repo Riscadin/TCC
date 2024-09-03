@@ -71,14 +71,70 @@
             max-width: 40%;
             border: 1px solid #000;
         }
-	.topo img{
-	    position: absolute;
+	 .topo img {
+            position: absolute;
             top: 50%; /* Alinha verticalmente ao centro do topo */
             right: 20px; /* Alinha a imagem à direita com uma margem */
             transform: translateY(-50%); /* Centraliza verticalmente */
             max-width: 150px; /* Define um tamanho máximo para a imagem */
             height: auto; /* Mantém a proporção da imagem */
-}
+        }
+
+        @media (max-width: 768px) {
+            .topo h1 {
+                font-size: 2em;
+            }
+
+            .topo p {
+                font-size: 1em;
+            }
+
+            .coluna-esquerda h2 {
+                font-size: 1.8em;
+            }
+
+            .coluna-esquerda p {
+                font-size: 1.2em;
+                padding: 15px;
+            }
+
+            .coluna-direita img {
+                max-width: 60%;
+            }
+
+            .topo img {
+                max-width: 100px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .topo h1 {
+                font-size: 1.8em;
+            }
+
+            .topo p {
+                font-size: 0.9em;
+            }
+
+            .coluna-esquerda h2 {
+                font-size: 1.5em;
+            }
+
+            .coluna-esquerda p {
+                font-size: 1em;
+                padding: 10px;
+            }
+
+            .coluna-direita img {
+                max-width: 80%;
+            }
+
+            .topo img {
+                max-width: 80px;
+                right: 10px;
+            }
+        }
 	
     </style>
 </head>
